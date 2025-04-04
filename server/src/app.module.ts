@@ -18,6 +18,7 @@ import { CoursesModule } from './courses/courses.module';
       database: process.env.PGDATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      ssl: true,
     }),
     AuthModule,
     UsersModule,
