@@ -1,5 +1,3 @@
-// src/components/Profile.stories.tsx
-import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import Profile from "./Profile";
 import { AuthContext } from "../context/AuthContext";
@@ -12,7 +10,7 @@ const dummyUser = {
   lastName: "Doe",
   email: "john.doe@example.com",
   role: "student",
-  progress: 50,
+  progress: 56,
   enrolledCourses: [15, 16, 17],
 };
 

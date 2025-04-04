@@ -13,7 +13,7 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/auth/register", {
+      await axios.post(`${global.API_ENDPOINT}/auth/register`, {
         firstName,
         lastName,
         email,

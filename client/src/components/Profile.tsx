@@ -19,7 +19,7 @@ const Profile: React.FC = () => {
           const responses = await Promise.all(
             user.enrolledCourses.map((courseId: number) =>
               axios.get<{ title: string }>(
-                `http://localhost:5000/courses/${courseId}`
+                `${global.API_ENDPOINT}/courses/${courseId}`
               )
             )
           );
@@ -46,7 +46,7 @@ const Profile: React.FC = () => {
   const confirmDeleteProfile = async () => {
     if (!user) return;
     try {
-      await axios.delete(`http://localhost:5000/users/${user.id}`, {
+      await axios.delete(`${global.API_ENDPOINT}/users/${user.id}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },

@@ -38,7 +38,10 @@ const AdminCourses: React.FC = () => {
   const fetchCourses = async () => {
     try {
       const { data } = await axios.get<Course[]>(
-        "http://localhost:5000/courses"
+        `${global.API_ENDPOINT}/courses`,
+        {
+          headers: { Authorization: `Bearer ${authToken}` },
+        }
       );
       setCourses(data);
     } catch (err) {
@@ -77,7 +80,7 @@ const AdminCourses: React.FC = () => {
         userId: user?.id,
       };
       const { data } = await axios.post<Course>(
-        "http://localhost:5000/courses",
+        `${global.API_ENDPOINT}/courses`,
         payload,
         {
           headers: { Authorization: `Bearer ${authToken}` },
@@ -92,7 +95,7 @@ const AdminCourses: React.FC = () => {
 
   const handleDeleteCourse = async (courseId: number) => {
     try {
-      await axios.delete(`http://localhost:5000/courses/${courseId}`, {
+      await axios.delete(`${global.API_ENDPOINT}/courses/${courseId}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setCourses(courses.filter((course) => course.id !== courseId));

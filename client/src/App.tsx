@@ -76,7 +76,9 @@ const App: React.FC = () => {
             </Routes>
           </div>
           <footer className="bg-gray-800 text-center py-4">
-            <span>&copy; 2025 Plateforme Paradox. Tous droits réservés.</span>
+            <span>
+              &copy; 2025 Fake Plateforme Paradox. Tous droits réservés.
+            </span>
           </footer>
         </Router>
       </AuthProvider>
