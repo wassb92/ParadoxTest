@@ -1,4 +1,3 @@
-// client/src/components/Profile.tsx
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, IAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +19,7 @@ const Profile: React.FC = () => {
           const responses = await Promise.all(
             user.enrolledCourses.map((courseId: number) =>
               axios.get<{ title: string }>(
-                `http://localhost:3001/courses/${courseId}`
+                `http://localhost:5000/courses/${courseId}`
               )
             )
           );
@@ -47,7 +46,7 @@ const Profile: React.FC = () => {
   const confirmDeleteProfile = async () => {
     if (!user) return;
     try {
-      await axios.delete(`http://localhost:3001/users/${user.id}`, {
+      await axios.delete(`http://localhost:5000/users/${user.id}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -81,18 +80,15 @@ const Profile: React.FC = () => {
 
   return (
     <motion.div
-      className="max-w-4xl mx-auto mt-12 bg-gray-800 p-8 rounded-lg shadow-2xl relative"
+      className="max-w-4xl mx-auto mt-12 bg-gray-800 p-8 rounded-lg shadow-2xl relative text-white"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
       <h2 className="text-4xl font-bold text-center mb-8">Mon Profil</h2>
-      {/* Informations personnelles et statistiques */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-">
         <div className="space-y-4">
-          <h3 className="text-2xl font-bold text-white">
-            Informations personnelles
-          </h3>
+          <h3 className="text-2xl font-bold">Informations personnelles</h3>
           <p>
             <span className="font-semibold">Prénom :</span> {user.firstName}
           </p>
@@ -125,9 +121,11 @@ const Profile: React.FC = () => {
         </div>
       </div>
 
-      {/* Barre de progression */}
       <div className="mt-8">
         <h3 className="text-2xl font-bold text-white mb-4">Ma Progression</h3>
+        <p className="text-gray-300 mb-2">
+          Vous avez complété {user.progress}% de votre formation.
+        </p>
         <div className="w-full bg-gray-700 rounded-full h-6">
           <motion.div
             className="bg-blue-600 h-6 rounded-full"
@@ -139,7 +137,6 @@ const Profile: React.FC = () => {
         </div>
       </div>
 
-      {/* Actions */}
       <div className="mt-8 flex justify-between items-center">
         <button
           onClick={handleLogout}
@@ -155,7 +152,6 @@ const Profile: React.FC = () => {
         </button>
       </div>
 
-      {/* Section complémentaire (ex: activité récente) */}
       <div className="mt-12">
         <h3 className="text-2xl font-bold text-white mb-4">Activité récente</h3>
         <p className="text-gray-300">
@@ -166,7 +162,6 @@ const Profile: React.FC = () => {
         </p>
       </div>
 
-      {/* Modal de confirmation pour la suppression */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="absolute inset-0 bg-black opacity-50"></div>

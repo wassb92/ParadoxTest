@@ -1,4 +1,3 @@
-// client/src/components/CourseList.tsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -21,9 +20,8 @@ const CourseList: React.FC = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get<Course[]>(
-          "http://localhost:3001/courses"
+          "http://localhost:5000/courses"
         );
-        // Tri décroissant par progression
         const sortedCourses = response.data.sort(
           (a, b) => b.progress - a.progress
         );

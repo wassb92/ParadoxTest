@@ -11,11 +11,11 @@ import { CoursesModule } from './courses/courses.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '127.0.0.1',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'ParadoxDB',
+      host: process.env.PGHOST,
+      port: parseInt(process.env.PGPORT as string, 10),
+      username: process.env.PGUSER,
+      password: process.env.PGPASSWORD,
+      database: process.env.PGDATABASE,
       autoLoadEntities: true,
       synchronize: true,
     }),

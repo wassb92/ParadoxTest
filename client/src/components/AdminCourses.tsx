@@ -1,4 +1,3 @@
-// client/src/components/AdminCourses.tsx
 import React, {
   useState,
   useEffect,
@@ -39,7 +38,7 @@ const AdminCourses: React.FC = () => {
   const fetchCourses = async () => {
     try {
       const { data } = await axios.get<Course[]>(
-        "http://localhost:3001/courses"
+        "http://localhost:5000/courses"
       );
       setCourses(data);
     } catch (err) {
@@ -75,10 +74,10 @@ const AdminCourses: React.FC = () => {
     try {
       const payload = {
         ...newCourse,
-        userId: user?.id, // Associer le cours à l'utilisateur connecté
+        userId: user?.id,
       };
       const { data } = await axios.post<Course>(
-        "http://localhost:3001/courses",
+        "http://localhost:5000/courses",
         payload,
         {
           headers: { Authorization: `Bearer ${authToken}` },
@@ -93,7 +92,7 @@ const AdminCourses: React.FC = () => {
 
   const handleDeleteCourse = async (courseId: number) => {
     try {
-      await axios.delete(`http://localhost:3001/courses/${courseId}`, {
+      await axios.delete(`http://localhost:5000/courses/${courseId}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setCourses(courses.filter((course) => course.id !== courseId));

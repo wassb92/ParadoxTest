@@ -51,7 +51,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (token) {
         setAuthToken(token);
         try {
-          const { data } = await axios.get("http://localhost:3001/users/me", {
+          const { data } = await axios.get("http://localhost:5000/users/me", {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUser(data);

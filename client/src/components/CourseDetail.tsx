@@ -1,4 +1,3 @@
-// client/src/components/CourseDetail.tsx
 import React, { useState, useEffect, SyntheticEvent } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -25,12 +24,11 @@ const CourseDetail: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
-  // Récupérer les données du cours (incluant videoUrl et progress)
   useEffect(() => {
     const fetchCourse = async () => {
       try {
         const response = await axios.get<Course>(
-          `http://localhost:3001/courses/${id}`
+          `http://localhost:5000/courses/${id}`
         );
         setCourse(response.data);
         setLocalProgress(response.data.progress);
@@ -43,7 +41,6 @@ const CourseDetail: React.FC = () => {
     fetchCourse();
   }, [id]);
 
-  // Gère la mise à jour automatique de la progression via l'événement onTimeUpdate
   const handleTimeUpdate = async (
     e: SyntheticEvent<HTMLVideoElement, Event>
   ) => {
@@ -52,14 +49,12 @@ const CourseDetail: React.FC = () => {
     const duration = target.duration;
     const progress = duration ? Math.round((currentTime / duration) * 100) : 0;
     setLocalProgress(progress);
-    // Vous pouvez choisir de mettre à jour le backend ici ou via un debounce/throttle
-    await axios.put(`http://localhost:3001/courses/${id}`, { progress });
+    await axios.put(`http://localhost:5000/courses/${id}`, { progress });
   };
 
-  // Boutons manuels
   const handleProgressIncrease = async () => {
     const newProgress = localProgress + 10 > 100 ? 100 : localProgress + 10;
-    await axios.put(`http://localhost:3001/courses/${id}`, {
+    await axios.put(`http://localhost:5000/courses/${id}`, {
       progress: newProgress,
     });
     setLocalProgress(newProgress);
@@ -67,7 +62,7 @@ const CourseDetail: React.FC = () => {
 
   const handleProgressDecrease = async () => {
     const newProgress = localProgress - 10 < 0 ? 0 : localProgress - 10;
-    await axios.put(`http://localhost:3001/courses/${id}`, {
+    await axios.put(`http://localhost:5000/courses/${id}`, {
       progress: newProgress,
     });
     setLocalProgress(newProgress);

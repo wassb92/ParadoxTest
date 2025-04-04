@@ -1,4 +1,3 @@
-// client/src/components/Register.tsx
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,7 +13,7 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/auth/register", {
+      await axios.post("http://localhost:5000/auth/register", {
         firstName,
         lastName,
         email,
@@ -28,7 +27,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-12">
+    <div className="max-w-md mx-auto mt-12 text-white">
       <div className="bg-gray-800 p-8 rounded-lg shadow-2xl transform transition hover:scale-105">
         <h2 className="text-3xl font-bold text-center mb-6">Inscription</h2>
         {message && <p className="mb-4 text-center text-red-400">{message}</p>}
