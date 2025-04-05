@@ -3,7 +3,6 @@ import Profile from "./Profile";
 import { AuthContext } from "../context/AuthContext";
 import { MemoryRouter } from "react-router-dom";
 
-// Exemple d'utilisateur
 const dummyUser = {
   id: 1,
   firstName: "John",

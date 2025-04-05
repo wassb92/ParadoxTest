@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { AuthContext, IAuthContext } from "./context/AuthContext";
 import { AuthProvider } from "./context/AuthContext";
 import Home from "./components/Home";
@@ -44,9 +44,9 @@ const Navigation: React.FC = () => {
         </>
       )}
       {user && user.role === "admin" && (
-        <a href="/admin/courses" className="hover:text-gray-300 transition">
+        <Link to="/admin/courses" className="hover:text-gray-300 transition">
           Admin Cours
-        </a>
+        </Link>
       )}
     </div>
   );

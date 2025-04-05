@@ -22,7 +22,7 @@ const CourseList: React.FC = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get<Course[]>(
-          `${global.API_ENDPOINT}/courses`
+          `${global.API_ENDPOINT || "http://localhost:5000"}/courses`
         );
         const sortedCourses = response.data.sort(
           (a, b) => b.progress - a.progress

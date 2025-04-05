@@ -1,4 +1,3 @@
-// client/src/components/Subscribe.tsx
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext, IAuthContext } from "../context/AuthContext";
@@ -20,7 +19,6 @@ const Subscribe: React.FC = () => {
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
       const sessionId = response.data.sessionId;
-      // Charge Stripe en utilisant loadStripe
       const stripe = await loadStripe(
         "pk_test_51RAaUvKsRGYDWNO8ZzFso54OrVyyxV8aaGIANR3EO3RRHgkbmaD90Gc1cQBLVoFnjiFQj36M8axJ042XGzVv7oKR0008rBXRLI"
       );
@@ -41,7 +39,6 @@ const Subscribe: React.FC = () => {
     }
   };
 
-  // Désabonnement : appel à l'endpoint backend pour se désabonner
   const handleUnsubscribe = async () => {
     if (!user || !authToken) return;
     setLoading(true);

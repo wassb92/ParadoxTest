@@ -1,4 +1,3 @@
-// server/src/users/users.module.ts (mise à jour)
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity';

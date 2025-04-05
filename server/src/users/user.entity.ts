@@ -1,4 +1,3 @@
-// server/src/users/user.entity.ts
 import { ApiProperty } from '@nestjs/swagger';
 import {
   Entity,

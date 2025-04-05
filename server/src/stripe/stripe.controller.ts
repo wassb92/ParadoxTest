@@ -1,4 +1,3 @@
-// server/src/stripe/stripe.controller.ts
 import {
   Controller,
   Post,
@@ -71,11 +70,9 @@ export class StripeController {
     @Body() body: { sessionId: string; userId: number; plan: string },
   ): Promise<{ message: string }> {
     try {
-      // Récupérer la session Stripe
       const session: Stripe.Checkout.Session =
         await this.stripeService.retrieveCheckoutSession(body.sessionId);
 
-      // Vérifier que la session correspond à une subscription réussie
       if (
         !session ||
         session.payment_status !== 'paid' ||
@@ -87,7 +84,6 @@ export class StripeController {
         );
       }
 
-      // Mettre à jour l'utilisateur avec les informations d'abonnement
       await this.usersService.updateUser(body.userId, {
         subscriptionType:
           session.mode === 'subscription' && session.subscription
@@ -96,11 +92,10 @@ export class StripeController {
         stripeSubscriptionId: session.subscription as string,
       });
 
-      // Envoyer la facture par email via l'API Stripe
       if (session.customer) {
         const customerId = session.customer as string;
-        // Déterminer le montant en centimes selon le plan fourni dans le body
-        const amount = body.plan === 'monthly' ? 999 : 9999; // ex : 9,99€ ou 99,99€
+
+        const amount = body.plan === 'monthly' ? 999 : 9999;
         await this.stripeService.createAndSendInvoice(
           customerId,
           "Votre facture d'abonnement",
@@ -131,7 +126,6 @@ export class StripeController {
   async unsubscribe(
     @Body() body: { userId: number },
   ): Promise<{ message: string }> {
-    // Récupérer l'utilisateur
     const user = await this.usersService.findById(body.userId);
     if (!user || !user.stripeSubscriptionId) {
       throw new HttpException(
@@ -141,9 +135,8 @@ export class StripeController {
     }
 
     try {
-      // Annuler l'abonnement Stripe
       await this.stripeService.cancelSubscription(user.stripeSubscriptionId);
-      // Mettre à jour l'utilisateur : supprimer les infos d'abonnement
+
       await this.usersService.updateUser(body.userId, {
         subscriptionType: null,
         stripeSubscriptionId: null,

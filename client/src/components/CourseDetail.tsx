@@ -28,7 +28,7 @@ const CourseDetail: React.FC = () => {
     const fetchCourse = async () => {
       try {
         const response = await axios.get<Course>(
-          `${global.API_ENDPOINT}/courses/${id}`
+          `${global.API_ENDPOINT || "http://localhost:5000"}/courses/${id}`
         );
         setCourse(response.data);
         setLocalProgress(response.data.progress);
@@ -49,22 +49,31 @@ const CourseDetail: React.FC = () => {
     const duration = target.duration;
     const progress = duration ? Math.round((currentTime / duration) * 100) : 0;
     setLocalProgress(progress);
-    await axios.put(`${global.API_ENDPOINT}/courses/${id}`, { progress });
+    await axios.put(
+      `${global.API_ENDPOINT || "http://localhost:5000"}/courses/${id}`,
+      { progress }
+    );
   };
 
   const handleProgressIncrease = async () => {
     const newProgress = localProgress + 10 > 100 ? 100 : localProgress + 10;
-    await axios.put(`${global.API_ENDPOINT}/courses/${id}`, {
-      progress: newProgress,
-    });
+    await axios.put(
+      `${global.API_ENDPOINT || "http://localhost:5000"}/courses/${id}`,
+      {
+        progress: newProgress,
+      }
+    );
     setLocalProgress(newProgress);
   };
 
   const handleProgressDecrease = async () => {
     const newProgress = localProgress - 10 < 0 ? 0 : localProgress - 10;
-    await axios.put(`${global.API_ENDPOINT}/courses/${id}`, {
-      progress: newProgress,
-    });
+    await axios.put(
+      `${global.API_ENDPOINT || "http://localhost:5000"}/courses/${id}`,
+      {
+        progress: newProgress,
+      }
+    );
     setLocalProgress(newProgress);
   };
 

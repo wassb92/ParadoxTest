@@ -1,4 +1,3 @@
-// server/src/payments/payments.service.ts
 import { Injectable } from '@nestjs/common';
 import Stripe from 'stripe';
 import * as dotenv from 'dotenv';
@@ -25,7 +24,6 @@ export class PaymentsService {
     customerId: string,
     subscriptionType: 'monthly' | 'annual',
   ): Promise<string> {
-    // Définir les prix Stripe pour les offres (les IDs de prix doivent être créés dans votre dashboard Stripe)
     const priceId =
       subscriptionType === 'monthly'
         ? process.env.STRIPE_PRICE_MONTHLY
@@ -34,7 +32,7 @@ export class PaymentsService {
     const session = await this.stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'subscription',
-      customer: customerId, // vous pouvez créer un client Stripe pour l'utilisateur si nécessaire
+      customer: customerId,
       line_items: [
         {
           price: priceId,
