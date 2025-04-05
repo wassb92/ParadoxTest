@@ -12,6 +12,9 @@ const dummyUser = {
   role: "student",
   progress: 56,
   enrolledCourses: [15, 16, 17],
+  subscriptionType: "monthly" as "monthly" | "yearly" | null,
+  stripeCustomerId: "cus_123456789",
+  stripeSubscriptionId: null,
 };
 
 export default {

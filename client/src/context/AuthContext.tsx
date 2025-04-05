@@ -2,6 +2,9 @@ import React, { createContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 
 export interface IUser {
+  subscriptionType: "monthly" | "yearly" | null;
+  stripeSubscriptionId: string | null;
+  stripeCustomerId: string;
   id: number;
   email: string;
   firstName: string;

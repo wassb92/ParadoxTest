@@ -1,11 +1,12 @@
-// server/src/app.module.ts (mise à jour)
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CoursesModule } from './courses/courses.module';
+import { PaymentsModule } from './payments/payments.module';
+import { StripeModule } from './stripe/stripe.module';
+import { StripeController } from './stripe/stripe.controller';
+import { StripeService } from './stripe/stripe.service';
 
 @Module({
   imports: [
@@ -18,13 +19,15 @@ import { CoursesModule } from './courses/courses.module';
       database: process.env.PGDATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      ssl: true,
+      ssl: process.env.PGUSER !== 'postgres',
     }),
     AuthModule,
     UsersModule,
     CoursesModule,
+    PaymentsModule,
+    StripeModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [StripeController],
+  providers: [StripeService],
 })
 export class AppModule {}

@@ -101,6 +101,18 @@ const Profile: React.FC = () => {
           <p>
             <span className="font-semibold">Rôle :</span> {user.role}
           </p>
+          <p>
+            <span className="font-semibold">Abonnement :</span>{" "}
+            {user.subscriptionType ? (
+              <span className="px-2 py-1 bg-green-500 text-white rounded">
+                Abonné ({user.subscriptionType})
+              </span>
+            ) : (
+              <span className="px-2 py-1 bg-red-500 text-white rounded">
+                Non abonné
+              </span>
+            )}
+          </p>
         </div>
         <div className="space-y-4">
           <h3 className="text-2xl font-bold text-white">Statistiques</h3>

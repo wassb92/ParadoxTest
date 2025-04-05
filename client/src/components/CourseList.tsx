@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { AuthContext, IAuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -12,6 +13,7 @@ export interface Course {
 }
 
 const CourseList: React.FC = () => {
+  const { user, authToken, logout } = useContext(AuthContext) as IAuthContext;
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -38,7 +40,21 @@ const CourseList: React.FC = () => {
   if (loading)
     return <p className="text-center text-gray-300 mt-8">Chargement...</p>;
   if (error) return <p className="text-center text-red-400 mt-8">{error}</p>;
-
+  if (!authToken || !user) {
+    return (
+      <div className="max-w-2xl mx-auto mt-12 bg-gray-800 p-8 rounded-lg shadow-2xl">
+        <p className="text-center text-red-400 mb-4">
+          Vous devez être connecté pour voir les cours.
+        </p>
+        <Link
+          to="/login"
+          className="block text-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
+        >
+          Se connecter
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="container mx-auto py-16">
       <h2 className="text-4xl font-bold text-center text-white mb-8">

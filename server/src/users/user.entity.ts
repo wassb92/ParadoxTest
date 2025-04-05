@@ -1,3 +1,4 @@
+// server/src/users/user.entity.ts
 import { ApiProperty } from '@nestjs/swagger';
 import {
   Entity,
@@ -50,6 +51,21 @@ export class User {
   })
   @Column('int', { array: true, nullable: true })
   enrolledCourses: number[];
+
+  @ApiProperty({
+    description: "Type d'abonnement de l'utilisateur",
+    example: 'monthly',
+    nullable: true,
+  })
+  @Column({ type: 'varchar', nullable: true })
+  subscriptionType: string | null;
+
+  @ApiProperty({
+    description: "Identifiant de l'abonnement Stripe",
+    nullable: true,
+  })
+  @Column({ type: 'varchar', nullable: true })
+  stripeSubscriptionId: string | null;
 
   @ApiProperty({ description: 'Date de création du compte' })
   @CreateDateColumn()

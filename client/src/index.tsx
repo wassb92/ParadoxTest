@@ -10,7 +10,10 @@ declare global {
   var API_ENDPOINT: string;
 }
 
-global.API_ENDPOINT = "http://localhost:5000";
+const isProduction = false;
+global.API_ENDPOINT = isProduction
+  ? "https://paradoxtest.onrender.com"
+  : "http://localhost:5000";
 
 root.render(
   <React.StrictMode>

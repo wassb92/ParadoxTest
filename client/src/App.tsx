@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthContext, IAuthContext } from "./context/AuthContext";
 import { AuthProvider } from "./context/AuthContext";
 import Home from "./components/Home";
@@ -10,35 +10,43 @@ import CourseList from "./components/CourseList";
 import CourseDetail from "./components/CourseDetail";
 import AdminCourses from "./components/AdminCourses";
 import AdminRoute from "./components/AdminRoute";
+import Subscribe from "./components/Subscribe";
+import SubscriptionSuccess from "./components/SubscriptionSuccess";
 
 const Navigation: React.FC = () => {
   const { user } = useContext(AuthContext) as IAuthContext;
 
   return (
     <div className="space-x-4">
-      <Link to="/" className="hover:text-gray-300 transition">
+      <a href="/" className="hover:text-gray-300 transition">
         Accueil
-      </Link>
-      <Link to="/courses" className="hover:text-gray-300 transition">
+      </a>
+      <a href="/courses" className="hover:text-gray-300 transition">
         Cours
-      </Link>
-      <Link to="/profile" className="hover:text-gray-300 transition">
-        Profil
-      </Link>
-      {!user && (
+      </a>
+      {!user ? (
         <>
-          <Link to="/login" className="hover:text-gray-300 transition">
+          <a href="/login" className="hover:text-gray-300 transition">
             Connexion
-          </Link>
-          <Link to="/register" className="hover:text-gray-300 transition">
+          </a>
+          <a href="/register" className="hover:text-gray-300 transition">
             Inscription
-          </Link>
+          </a>
+        </>
+      ) : (
+        <>
+          <a href="/subscribe" className="hover:text-gray-300 transition">
+            Abonnement
+          </a>
+          <a href="/profile" className="hover:text-gray-300 transition">
+            Profil
+          </a>
         </>
       )}
       {user && user.role === "admin" && (
-        <Link to="/admin/courses" className="hover:text-gray-300 transition">
+        <a href="/admin/courses" className="hover:text-gray-300 transition">
           Admin Cours
-        </Link>
+        </a>
       )}
     </div>
   );
@@ -72,6 +80,11 @@ const App: React.FC = () => {
                     <AdminCourses />
                   </AdminRoute>
                 }
+              />
+              <Route path="/subscribe" element={<Subscribe />} />
+              <Route
+                path="/subscription/success"
+                element={<SubscriptionSuccess />}
               />
             </Routes>
           </div>
