@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Fake Paradox Coaching - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue sur le frontend de Paradox Coaching, une plateforme de formation interactive qui combine le développement personnel et la technologie. Ce projet est construit en React avec TypeScript et Tailwind CSS, et utilise React Router pour la navigation.
 
-## Available Scripts
+## Table des matières :
 
-In the project directory, you can run:
+- [Présentation](#présentation)
+- [Fonctionnalités](#fonctionnalités)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Scripts disponibles](#scripts-disponibles)
 
-### `npm start`
+## Présentation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Paradox Coaching propose des formations en ligne, permettant aux utilisateurs de s'inscrire, de suivre leur progression et d'accéder à du contenu vidéo interactif. L'interface a été conçue avec une attention particulière à l'expérience utilisateur (UX/UI) et intègre des animations fluides pour rendre la navigation agréable.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Fonctionnalités :
 
-### `npm test`
+- **Inscription et authentification** : S'enregistrer, se connecter et gérer son profil.
+- **Liste des cours** : Consultation des cours disponibles, triés par progression.
+- **Détail d'un cours** : Lecture de vidéos avec suivi de progression en temps réel.
+- **Administration** : Gestion des cours (création, mise à jour, suppression) accessible aux administrateurs.
+- **Abonnements** : Intégration de Stripe (mode test) pour la souscription à des offres mensuelles ou annuelles.
+- **Responsive Design** : Interface adaptée à tous les types d'appareils.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies :
 
-### `npm run build`
+- **React** et **TypeScript**
+- **Tailwind CSS** pour la mise en forme et les animations
+- **React Router** pour la navigation
+- **Framer Motion** pour les animations
+- **Axios** pour les appels API
+- **Stripe** (mode test) pour la gestion des abonnements et des paiements
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Cloner le dépôt** :
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone https://github.com/wassb92/ParadoxTest
+cd paradox-coaching-frontend
+```
 
-### `npm run eject`
+2. **Installer les dépendances** :
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Démarrer l'application** :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Utilisation :
 
-## Learn More
+- **Navigation** : L'application propose une navigation intuitive grâce à React Router. Vous pouvez accéder aux différentes pages via le menu.
+- **Inscription / Connexion** : Créez un compte pour suivre vos cours et voir votre progression.
+- **Cours** : Parcourez la liste des cours, regardez les vidéos et suivez votre progression.
+- **Abonnements** : Souscrivez à l'une des deux offres (mensuel à 9,99€ ou annuel à 99,99€) pour bénéficier d'un accès complet aux formations.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Scripts disponibles :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `npm start` Lance l'application en mode développement sur http://localhost:3000.
+- `npm run build` Compile l'application en mode production dans le dossier build.
+- `npm test` Lance les tests unitaires (si configurés).
+- `npm run storybook` Lance Storybook pour visualiser et tester les composants de l'interface.
 
-### Code Splitting
+## Contact :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ![Author](https://img.shields.io/badge/Author-3498db?style=flat&logo=&logoColor=white)
 
-### Analyzing the Bundle Size
+[Wassini Bouzidi](https://github.com/wassb92)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Connect
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 🔧 Wassini Bouzidi
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Portfolio_De_Wassini-4031D9?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.wassini-bouzidi.com/)  
+[![GitHub](https://img.shields.io/badge/GitHub-wassb92-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wassb92)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-wassini_bouzidi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wassini-bouzidi/)

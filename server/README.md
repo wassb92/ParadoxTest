@@ -1,98 +1,137 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Fake Paradox Coaching - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Ce projet constitue le backend de Paradox Coaching, une plateforme de formation interactive combinant développement personnel et technologie. Le backend est construit avec NestJS, TypeORM et PostgreSQL. Il gère l'authentification, la gestion des utilisateurs et des cours, ainsi que l'intégration de Stripe pour les abonnements et les paiements.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table des matières :
 
-## Description
+- [Présentation](#présentation)
+- [Fonctionnalités](#fonctionnalités)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Scripts disponibles](#scripts-disponibles)
+- [Contact](#contact)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Présentation :
 
-## Project setup
+Le backend de Paradox Coaching fournit une API RESTful qui permet aux clients (applications frontend) de gérer l'inscription et l'authentification des utilisateurs (via JWT), de consulter, créer, mettre à jour et supprimer des cours, de suivre la progression des utilisateurs dans les cours, et de gérer les abonnements et les paiements avec Stripe.
 
-```bash
-$ npm install
-```
+## Fonctionnalités :
 
-## Compile and run the project
+- **Authentification et gestion des utilisateurs** : Inscription, connexion, récupération du profil, et suppression de compte.
+- **Gestion des cours** : Création, mise à jour, consultation et suppression des cours. Calcul automatique de la progression et suivi des cours suivis par chaque utilisateur.
+- **Intégration Stripe** : Création de sessions Checkout pour les abonnements, mise à jour de l'abonnement de l'utilisateur, annulation d'abonnement et envoi de factures.
+- **Sécurité** : Utilisation de JWT et de Guards pour protéger les endpoints sensibles.
+- **Documentation API** : Swagger est intégré pour documenter et tester l'API.
 
-```bash
-# development
-$ npm run start
+## Technologies :
 
-# watch mode
-$ npm run start:dev
+- **NestJS** pour la structure du backend.
+- **TypeScript** pour une meilleure robustesse du code.
+- **TypeORM** et **PostgreSQL** pour la gestion de la base de données.
+- **Stripe API** (mode test) pour gérer les paiements et les abonnements.
+- **JWT** pour l'authentification.
+- **Swagger** pour la documentation de l'API.
 
-# production mode
-$ npm run start:prod
-```
+## Installation :
 
-## Run tests
+1. **Cloner le dépôt** :
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/wassb92/ParadoxTest
+cd server
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+2. **Installer les dépendances** :
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+<!-- # Port used -->
+<!-- PORT=5000 -->
+<!--  -->
+<!-- # Environment -->
+<!-- JWT_SECRET='thisIsASecretKey' -->
+<!--  -->
+<!-- # Local Database connection -->
+<!-- PGUSER=postgres -->
+<!-- PGHOST=localhost -->
+<!-- PGPASSWORD=postgres -->
+<!-- PGDATABASE=ParadoxDB -->
+<!-- PGPORT=5432 -->
+<!--  -->
+<!-- # Cloud Database connection -->
+<!-- # PGUSER=paradox_test_db_user -->
+<!-- # PGHOST=dpg-cvo56semcj7s73fttde0-a.frankfurt-postgres.render.com -->
+<!-- # PGPASSWORD=zDhcnduHfSTfPwC5pYGmMpL4wFB8x2I9 -->
+<!-- # PGDATABASE=paradox_test_db -->
+<!-- # PGPORT=5432 -->
+<!--  -->
+<!-- # Stripe -->
+<!-- STRIPE_PUBLISHABLE_KEY=pk_test_51RAaUvKsRGYDWNO8ZzFso54OrVyyxV8aaGIANR3EO3RRHgkbmaD90Gc1cQBLVoFnjiFQj36M8axJ042XGzVv7oKR0008rBXRLI -->
+<!-- STRIPE_SECRET_KEY=sk_test_51RAaUvKsRGYDWNO8agJkyoARGALhqjvYtmK50y7O3oCIZPlHL9HSJvx4eWD8bymZU2wxJVS1aye4wHNS88bGZU9l00msw2Vnyl -->
+<!-- STRIPE_PRICE_MONTHLY=price_1RAadcKsRGYDWNO8yfAkBh6i -->
+<!-- STRIPE_PRICE_ANNUAL=price_1RAaeIKsRGYDWNO8zHra3RRA -->
+<!-- FRONTEND_URL=http://localhost:3000 -->
 
-## Resources
+3. **Configurer les variables d'environnement** :
+   Créez un fichier `.env` à la racine du projet et ajoutez-y vos variables, par exemple :
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+PORT=
+JWT_SECRET=
+PGUSER=
+PGHOST=
+PGPASSWORD=
+PGDATABASE=
+PGPORT=
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_PRICE_MONTHLY=
+STRIPE_PRICE_ANNUAL=
+FRONTEND_URL=
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+4. **Lancer la migration et initialiser la base de données (si nécessaire)** :
+   Selon votre configuration TypeORM, exécutez les migrations ou synchronisez la base de données.
 
-## Support
+```bash
+npm run typeorm migration:run
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+5. **Démarrer l'application** :
 
-## Stay in touch
+```bash
+npm run start
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Utilisation :
 
-## License
+L'API est accessible via `http://localhost:5000` (ou le port configuré).
+Accédez à la documentation Swagger à l'adresse `http://localhost:5000/api-docs` pour visualiser et tester l'ensemble des endpoints.
+Le backend gère l'authentification, la gestion des cours et des abonnements. Il est également prévu d'envoyer automatiquement les factures pour les paiements via Stripe.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Scripts disponibles :
+
+- `npm run start` : Lance l'application en mode développement.
+- `npm run build` : Compile l'application en mode production dans le dossier `dist`.
+- `npm run start:dev` : Lance l'application en mode développement avec redémarrage automatique (watch mode).
+- `npm run test` : Lance les tests unitaires (si configurés).
+- `npm run test:e2e` : Lance les tests end-to-end (si configurés).
+
+## Contact :
+
+## ![Author](https://img.shields.io/badge/Author-3498db?style=flat&logo=&logoColor=white)
+
+[Wassini Bouzidi](https://github.com/wassb92)
+
+---
+
+## Connect
+
+### 🔧 Wassini Bouzidi
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-Portfolio_De_Wassini-4031D9?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.wassini-bouzidi.com/)  
+[![GitHub](https://img.shields.io/badge/GitHub-wassb92-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wassb92)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-wassini_bouzidi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wassini-bouzidi/)

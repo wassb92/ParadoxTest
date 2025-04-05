@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { AuthContext, IAuthContext } from "../context/AuthContext";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SubscriptionSuccess: React.FC = () => {
+  const { user } = useContext(AuthContext) as IAuthContext;
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState<string>(
@@ -11,6 +13,8 @@ const SubscriptionSuccess: React.FC = () => {
   const [redirectCountdown, setRedirectCountdown] = useState<number>(10);
 
   useEffect(() => {
+    if (user && user.stripeSubscriptionId) return;
+
     const sessionId = searchParams.get("session_id");
     const userId = searchParams.get("userId");
 
@@ -33,7 +37,7 @@ const SubscriptionSuccess: React.FC = () => {
       };
       updateSubscription();
     }
-  }, [searchParams]);
+  }, [searchParams, user]);
 
   useEffect(() => {
     if (message === "Votre abonnement a été mis à jour avec succès !") {
