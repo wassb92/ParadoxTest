@@ -1,4 +1,4 @@
-import React, { useState, useEffect, SyntheticEvent } from "react";
+import React, { useState, useEffect, useRef, SyntheticEvent } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -23,6 +23,7 @@ const CourseDetail: React.FC = () => {
   const [localProgress, setLocalProgress] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -40,6 +41,13 @@ const CourseDetail: React.FC = () => {
     };
     fetchCourse();
   }, [id]);
+
+  const handleLoadedMetadata = () => {
+    if (videoRef.current && videoRef.current.duration && localProgress) {
+      const resumeTime = (videoRef.current.duration * localProgress) / 100;
+      videoRef.current.currentTime = Math.max(resumeTime - 10, 0);
+    }
+  };
 
   const handleTimeUpdate = async (
     e: SyntheticEvent<HTMLVideoElement, Event>
@@ -59,9 +67,7 @@ const CourseDetail: React.FC = () => {
     const newProgress = localProgress + 10 > 100 ? 100 : localProgress + 10;
     await axios.put(
       `${global.API_ENDPOINT || "http://localhost:5000"}/courses/${id}`,
-      {
-        progress: newProgress,
-      }
+      { progress: newProgress }
     );
     setLocalProgress(newProgress);
   };
@@ -70,9 +76,7 @@ const CourseDetail: React.FC = () => {
     const newProgress = localProgress - 10 < 0 ? 0 : localProgress - 10;
     await axios.put(
       `${global.API_ENDPOINT || "http://localhost:5000"}/courses/${id}`,
-      {
-        progress: newProgress,
-      }
+      { progress: newProgress }
     );
     setLocalProgress(newProgress);
   };
@@ -95,8 +99,10 @@ const CourseDetail: React.FC = () => {
         <p className="text-gray-300 mb-4">{course?.description}</p>
         <div className="mb-4">
           <video
+            ref={videoRef}
             className="w-full h-64 object-cover rounded"
             controls
+            onLoadedMetadata={handleLoadedMetadata}
             onTimeUpdate={handleTimeUpdate}
           >
             <source src={course?.videoUrl} type="video/mp4" />
